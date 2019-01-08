@@ -75,6 +75,10 @@ func (c NodePoolConfig) LaunchConfigurationLogicalName() string {
 	return c.LogicalName() + "LC"
 }
 
+func (c NodePoolConfig) LaunchTemplateLogicalName() string {
+	return c.LogicalName() + "LT"
+}
+
 func (c NodePoolConfig) Validate(experimentalGpuSupportEnabled bool) error {
 	// one is the default WorkerCount
 	if c.Count != 1 && (c.AutoScalingGroup.MinSize != nil && *c.AutoScalingGroup.MinSize != 0 || c.AutoScalingGroup.MaxSize != 0) {

@@ -461,6 +461,21 @@ worker:
 #        maxSize: 3
 #        rollingUpdateMinInstancesInService: 2
 #
+#        # Configure mixedInstances for autoscalinggroups
+#        # See https://aws.amazon.com/blogs/aws/new-ec2-auto-scaling-groups-with-multiple-instance-types-purchase-options/
+#        # and https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancesdistribution.html for valid values
+#        mixedInstances:
+#          enabled: false
+#          onDemandAllocationStrategy: prioritized
+#          onDemandBaseCapacity: 0
+#          onDemandPercentageAboveBaseCapacity: 0
+#          spotAllocationStrategy: lowest-price
+#          spotInstancePools: 2
+#          spotMaxPrice: 2
+#          instanceTypes:
+#          - t2.medium
+#          - t3.medium
+#
 #      #
 #      # Spot fleet config for worker nodes
 #      #
