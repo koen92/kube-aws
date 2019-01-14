@@ -85,6 +85,12 @@ func NewControlPlaneStack(conf *Config, opts api.StackTemplateOptions, extras cl
 			conf.Controller.CustomSystemdUnits = append(conf.Controller.CustomSystemdUnits, extraController.SystemdUnits...)
 			conf.Controller.CustomFiles = append(conf.Controller.CustomFiles, extraController.Files...)
 			conf.Controller.IAMConfig.Policy.Statements = append(conf.Controller.IAMConfig.Policy.Statements, extraController.IAMPolicyStatements...)
+			subnets, err := conf.Controller.Subnets.ImportFromNetworkStackRetainingNames()
+			if err != nil {
+				return fmt.Errorf("failed to import subnets from network stack: %v", err)
+			}
+			conf.Controller.Subnets = subnets
+			conf.VPC = stack.tmplCtx.(ControllerTmplCtx).VPC
 			conf.KubeAWSVersion = VERSION
 			for k, v := range extraController.NodeLabels {
 				conf.Controller.NodeLabels[k] = v

@@ -44,7 +44,12 @@ func Compile(cfgRef *api.Cluster, opts api.ClusterOptions) (*Config, error) {
 		}
 	}
 
-	apiEndpoints, err := NewAPIEndpoints(c.APIEndpointConfigs, c.Subnets)
+	apiSubnets, err := c.Subnets.ImportFromNetworkStackRetainingNames()
+	if err != nil {
+		return nil, fmt.Errorf("failed to import subnets from network stack: %v", err)
+	}
+
+	apiEndpoints, err := NewAPIEndpoints(c.APIEndpointConfigs, apiSubnets)
 	if err != nil {
 		return nil, fmt.Errorf("invalid cluster: %v", err)
 	}
