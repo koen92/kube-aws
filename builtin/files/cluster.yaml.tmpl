@@ -473,6 +473,7 @@ worker:
 #        # Configure mixedInstances for autoscalinggroups
 #        # See https://aws.amazon.com/blogs/aws/new-ec2-auto-scaling-groups-with-multiple-instance-types-purchase-options/
 #        # and https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancesdistribution.html for valid values
+#        # NOTE: mixedInstances and full cluster autoscaler support is being worked on at the moment see: https://github.com/kubernetes/autoscaler/pull/1473
 #        mixedInstances:
 #          enabled: false
 #          onDemandAllocationStrategy: prioritized
