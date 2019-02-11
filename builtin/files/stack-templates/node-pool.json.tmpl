@@ -135,8 +135,10 @@
             {{if .AutoScalingGroup.MixedInstances.SpotAllocationStrategy}}
             "SpotAllocationStrategy" : "{{.AutoScalingGroup.MixedInstances.SpotAllocationStrategy}}",
             {{end}}
-            "SpotInstancePools" : {{.AutoScalingGroup.MixedInstances.SpotInstancePools}},
-            "SpotMaxPrice" : "{{.AutoScalingGroup.MixedInstances.SpotMaxPrice}}"
+            {{if .AutoScalingGroup.MixedInstances.SpotMaxPrice}}
+            "SpotMaxPrice" : "{{.AutoScalingGroup.MixedInstances.SpotMaxPrice}}",
+            {{end}}
+            "SpotInstancePools" : {{.AutoScalingGroup.MixedInstances.SpotInstancePools}}
           },
           "LaunchTemplate" : {
             "LaunchTemplateSpecification" : {
