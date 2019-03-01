@@ -288,9 +288,6 @@ func (c ProvidedConfig) FeatureGates() model.FeatureGates {
 	if gates == nil {
 		gates = model.FeatureGates{}
 	}
-	if c.Gpu.Nvidia.IsEnabledOn(c.InstanceType) {
-		gates["Accelerators"] = "true"
-	}
 	if c.Experimental.GpuSupport.Enabled {
 		gates["DevicePlugins"] = "true"
 	}
